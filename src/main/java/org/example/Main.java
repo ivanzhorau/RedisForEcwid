@@ -1,8 +1,9 @@
 package org.example;
 
+import by.zhorau.rediscollections.RedisList;
 import by.zhorau.rediscollections.RedisMap;
 import redis.clients.jedis.Jedis;
-
+import java.util.Arrays;
 import java.util.Map;
 
 public class Main {
@@ -21,6 +22,16 @@ public class Main {
         System.out.println(map.keySet());
         System.out.println(map.values());
         System.out.println(map.entrySet());
+
+
+        RedisList list = new RedisList(jedis, "test");
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.retainAll(Arrays.asList("a","c"));
+        System.out.println(list.size());
+        System.out.println(list);
+        list.clear();
 
     }
 }
