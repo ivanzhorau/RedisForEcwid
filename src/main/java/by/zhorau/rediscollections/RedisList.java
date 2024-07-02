@@ -1,7 +1,7 @@
 package by.zhorau.rediscollections;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.args.ListPosition;
+import redis.clients.jedis.commands.JedisCommands;
 
 import java.util.*;
 
@@ -10,10 +10,10 @@ import static redis.clients.jedis.args.ListPosition.BEFORE;
 
 public class RedisList implements List<String> {
 
-    private final Jedis jedis;
+    private final JedisCommands jedis;
     private final String namespace;
 
-    public RedisList(Jedis jedis, String namespace) {
+    public RedisList(JedisCommands jedis, String namespace) {
         this.jedis = jedis;
         this.namespace = namespace;
     }

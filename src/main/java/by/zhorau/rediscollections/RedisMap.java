@@ -1,15 +1,16 @@
 package by.zhorau.rediscollections;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.commands.JedisCommands;
 
 import java.util.*;
 
 public class RedisMap implements Map<String, Integer> {
 
-    private final Jedis jedis;
+    private final JedisCommands jedis;
     private final String namespace;
 
-    public RedisMap(Jedis jedis, String namespace) {
+    public RedisMap(JedisCommands jedis, String namespace) {
         this.jedis = jedis;
         this.namespace = namespace;
     }
