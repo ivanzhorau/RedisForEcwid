@@ -3,12 +3,18 @@ package org.example;
 import by.zhorau.rediscollections.RedisList;
 import by.zhorau.rediscollections.RedisMap;
 import redis.clients.jedis.Jedis;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) {
-        Jedis jedis = new Jedis("redis://default:d4hmrGB1UKPIfQ6kGcgzR9fIEU4VZCGT@redis-10724.c327.europe-west1-2.gce.redns.redis-cloud.com:10724");
+    public static void main(String[] args) throws IOException {
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("src/main/resources/config.properties"));
+        Jedis jedis = new Jedis(properties.getProperty("redis.url"));
         Map<String, Integer> map = new RedisMap(jedis, "test");
         map.put("a", 10);
         map.put("c", 3);
